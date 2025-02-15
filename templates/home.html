@@ -3,6 +3,20 @@
 {%block style%} <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> {%endblock%}
 
 {%block body %} 
-    <h1>Course Scraper</h1>
+    <div id = "main">
+        <h1>Course Catalogue Scraper</h1>
+
+        <div id = "inputs">
+            <p>Faculty</p>
+            <input type="text"> 
+            <input type="text">
+            <input type="text">
+            <input type="text" required>
+
+            <button class = "submit_button"></button>
+        </div>
+    </div>
 {%endblock%}
+
+{%block javascript%} <script src = "{{url_for('static', filename='js/main.js')}}"></script> {%endblock%}
 
