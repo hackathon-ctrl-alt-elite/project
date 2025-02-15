@@ -12,9 +12,11 @@ def home():
 def query():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM courses")
 
-    # Step 1: Create a table with proper column names
+    # Step 1: Drop the table if it exists (to avoid stale/incorrect data)
+    cursor.execute("DROP TABLE IF EXISTS courses")
+
+    # Step 2: Create a table with proper column names
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS courses (
             title TEXT,
@@ -23,17 +25,17 @@ def query():
         )
     ''')
 
-
     # Step 3: Correct CSV reading and inserting
     csv_file = 'ualberta_courses.csv'
-    with open(csv_file, "r") as f:
+    with open(csv_file, "r", encoding="utf-8") as f:
         reader = csv.reader(f)
         header = next(reader)  # Skip the header row
 
         for row in reader:
-            print(row)  
-            cursor.execute("INSERT INTO courses (title, description, url) VALUES (?, ?, ?)", row)
-    print()
+            if len(row) == 3:
+                cursor.execute("INSERT INTO courses (title, description, url) VALUES (?, ?, ?)", row)
+            else:
+                print(f"Skipping row due to incorrect format: {row}")
 
     # Step 4: Commit and query the table
     conn.commit()
@@ -47,5 +49,6 @@ def query():
     results = [{"title": row[0], "description": row[1], "url": row[2]} for row in rows]
 
     conn.close()
+    print(results)
 
     return jsonify(results)
