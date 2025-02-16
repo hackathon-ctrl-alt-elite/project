@@ -3,18 +3,34 @@
 {%block style%} <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> {%endblock%}
 
 {%block body %} 
-    <div id = "main">
-        <h1>Course Catalogue Scraper</h1>
+    <header id="main-header">
+        <h1>Course Catalogue Scraper</h1> 
+    </header> 
+    <div id = "main">     
+        <form id = "inputs">
+            <div class="form-row">
+                <div class="label-input-container">
+                    <label class="program-label" for="faculty">Faculty</label>
+                    <input id="faculty" type="text" placeholder="Enter your faculty"/> 
+                </div>
+                <div class="label-input-container">
+                    <label class="program-label" for="major">Major</label>
+                    <input id="major" type="text" placeholder="Enter your major"/> 
+                </div>
+            </div>
+            
+            <div class="label-input-container">
+                <label id="keywords-label" for="keywords">Interests and Keywords</label>
+                <input id="keywords" type="text" placeholder=""/> 
+            </div>
 
-        <div id = "inputs">
-            <p>Faculty</p>
-            <input type="text"> 
-            <input type="text">
-            <input type="text">
-            <input type="text" required>
+            <div class="label-input-container">
+                <label id="courses-taken-label" for="courses-taken">Courses Completed</label>
+                <input id="courses-taken" type="text" placeholder=""/> 
+            </div>
 
-            <button id = "submit_button"></button>
-        </div>
+            <button id = "submit_button">Find Courses</button>
+        </form>
     </div>
 {%endblock%}
 
