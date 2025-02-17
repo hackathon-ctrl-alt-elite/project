@@ -33,23 +33,6 @@
         </form>
     </div>
 {%endblock%}
-<script>
-    // Select the button and main div
-    const button = document.querySelector("#submit_button");
-    const mainDiv = document.querySelector("#main"); // The container div
-
-    // Add event listener to the button
-    button.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Create a new paragraph
-        const newParagraph = document.createElement("p");
-        newParagraph.textContent = "New course recommendation added!";
-
-        // Append the paragraph to the end of the #main div
-        mainDiv.appendChild(newParagraph);
-    });
-</script>
 
 {%block javascript%} <script src = "{{url_for('static', filename='js/main.js')}}"></script> {%endblock%}
 
