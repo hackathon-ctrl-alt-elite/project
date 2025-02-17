@@ -1,4 +1,4 @@
-document.getElementById("submit_button").addEventListener('click', () => {
+document.querySelector("#submit_button").addEventListener('click', () => {
     fetch('/query')
     .then(response => response.json())
     .then(data => {
@@ -15,7 +15,7 @@ document.getElementById("submit_button").addEventListener('click', () => {
         // Display the fetched data
         data.forEach(item => {
             let output = document.createElement("p");
-            output.textContent = `Title: ${item.TITLE}, Description: ${item.DESCRIPTION}, URL: ${item.URL}`;
+            output.textContent = `Title: ${item.title}, Description: ${item.description}, URL: ${item.url}`;
             main.appendChild(output);
         });
     })
